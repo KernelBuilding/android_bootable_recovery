@@ -1744,6 +1744,9 @@ bool TWPartition::UnMount(bool Display_Error, int flags) {
 		if (umount("/system") == -1)
 			umount2("/system", MNT_DETACH);
 	}
+	if(Mount_Point == "/data" && Is_Mounted() && Is_Decrypted) {
+                return true;
+    }
 	if (Is_Mounted()) {
 		int never_unmount_system;
 
